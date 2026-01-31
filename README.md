@@ -89,14 +89,14 @@ For production:
 ### 1. Clone or Download
 
 ```bash
-  git clone <your-repo-url>
-  cd jitsi
+git clone git@github.com:sumaiazaman/jitsi.git
+cd jitsi
 ```
 
 ### 2. Configure Environment
 
 ```bash
-  # Copy the example environment file
+# Copy the example environment file
 cp .env.example .env
 
 # Edit the .env file with your settings
@@ -106,7 +106,7 @@ nano .env  # or use your preferred editor
 ### 3. Start Services
 
 ```bash
-  # Start all services
+# Start all services
 docker-compose up -d
 
 # Check service status
@@ -168,7 +168,7 @@ All configuration is done through the `.env` file. Key variables:
 
 Generate strong passwords:
 ```bash
-  openssl rand -hex 16
+openssl rand -hex 16
 ```
 
 ## 💻 Usage
@@ -191,28 +191,28 @@ Participants can join by:
 
 #### Stop Services
 ```bash
-  docker-compose down
+docker-compose down
 ```
 
 #### Restart Services
 ```bash
-  docker-compose restart
+docker-compose restart
 ```
 
 #### View Logs
 ```bash
-  # All services
-  docker-compose logs -f
+# All services
+docker-compose logs -f
 
-  # Specific service
-  docker-compose logs -f web
-  docker-compose logs -f jvb
+# Specific service
+docker-compose logs -f web
+docker-compose logs -f jvb
 ```
 
 #### Update to Latest Version
 ```bash
-  docker-compose pull
-  docker-compose up -d
+docker-compose pull
+docker-compose up -d
 ```
 
 ## 🌐 Production Deployment
@@ -221,11 +221,11 @@ Participants can join by:
 
 Update your `.env` file:
 ```bash
-  PUBLIC_URL=https://meet.yourdomain.com
-  ENABLE_LETSENCRYPT=1
-  ENABLE_HTTP_REDIRECT=1
-  HTTP_PORT=80
-  HTTPS_PORT=443
+PUBLIC_URL=https://meet.yourdomain.com
+ENABLE_LETSENCRYPT=1
+ENABLE_HTTP_REDIRECT=1
+HTTP_PORT=80
+HTTPS_PORT=443
 ```
 
 ### 2. DNS Configuration
@@ -239,7 +239,7 @@ A Record: meet.yourdomain.com → YOUR_SERVER_IP
 
 Open required ports:
 ```bash
-  # Ubuntu/Debian with UFW
+# Ubuntu/Debian with UFW
 sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
 sudo ufw allow 10000/udp
@@ -255,23 +255,23 @@ sudo firewall-cmd --reload
 
 #### Enable Authentication
 ```bash
-  ENABLE_AUTH=1
-  ENABLE_GUESTS=1  # Allow guests to join authenticated rooms
+ENABLE_AUTH=1
+ENABLE_GUESTS=1  # Allow guests to join authenticated rooms
 ```
 
 #### Change All Passwords
 ```bash
-  JICOFO_AUTH_PASSWORD=$(openssl rand -hex 16)
-  JVB_AUTH_PASSWORD=$(openssl rand -hex 16)
-  JIGASI_XMPP_PASSWORD=$(openssl rand -hex 16)
-  JIBRI_XMPP_PASSWORD=$(openssl rand -hex 16)
-  JIBRI_RECORDER_PASSWORD=$(openssl rand -hex 16)
+JICOFO_AUTH_PASSWORD=$(openssl rand -hex 16)
+JVB_AUTH_PASSWORD=$(openssl rand -hex 16)
+JIGASI_XMPP_PASSWORD=$(openssl rand -hex 16)
+JIBRI_XMPP_PASSWORD=$(openssl rand -hex 16)
+JIBRI_RECORDER_PASSWORD=$(openssl rand -hex 16)
 ```
 
 ### 5. Deploy
 ```bash
-  docker-compose down
-  docker-compose up -d
+docker-compose down
+docker-compose up -d
 ```
 
 ## 🔧 Troubleshooting
@@ -280,13 +280,13 @@ sudo firewall-cmd --reload
 
 **Check logs:**
 ```bash
-  docker-compose logs
+docker-compose logs
 ```
 
 **Check if ports are already in use:**
 ```bash
-  sudo lsof -i :8000
-  sudo lsof -i :10000
+sudo lsof -i :8000
+sudo lsof -i :10000
 ```
 
 ### Can't Connect to Video/Audio
@@ -295,7 +295,7 @@ sudo firewall-cmd --reload
 
 **Solution:**
 ```bash
-  # Check if port is open
+# Check if port is open
 sudo netstat -tulpn | grep 10000
 
 # Open the port
@@ -313,7 +313,7 @@ sudo ufw allow 10000/udp
 
 **Check:**
 ```bash
-  # Test domain resolution
+# Test domain resolution
 nslookup meet.yourdomain.com
 
 # Check port accessibility
@@ -337,7 +337,7 @@ curl -I http://meet.yourdomain.com
 ### Backup Configuration
 
 ```bash
-  # Backup environment file
+# Backup environment file
 cp .env .env.backup
 
 # Backup Docker volumes
@@ -348,7 +348,7 @@ docker run --rm -v jitsi_prosody_config:/data -v $(pwd):/backup ubuntu tar czf /
 ### Update Services
 
 ```bash
-  # Pull latest images
+# Pull latest images
 docker-compose pull
 
 # Recreate containers with new images
@@ -361,7 +361,7 @@ docker image prune -a
 ### Monitor Resources
 
 ```bash
-  # Check container resource usage
+# Check container resource usage
 docker stats
 
 # Check disk usage
@@ -371,7 +371,7 @@ docker system df
 ### Clean Up
 
 ```bash
-  # Remove stopped containers
+# Remove stopped containers
 docker-compose down
 
 # Remove volumes (⚠️ This deletes all data!)
