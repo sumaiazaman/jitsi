@@ -1,0 +1,130 @@
+# =============================================================================
+# Jitsi Meet Docker - Git Ignore File
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Environment Variables
+# -----------------------------------------------------------------------------
+# Never commit sensitive environment variables
+.env
+.env.local
+.env.*.local
+
+# -----------------------------------------------------------------------------
+# Docker
+# -----------------------------------------------------------------------------
+# Docker volumes and data
+docker-compose.override.yml
+*.log
+
+# -----------------------------------------------------------------------------
+# IDE and Editor Files
+# -----------------------------------------------------------------------------
+# JetBrains IDEs (IntelliJ, WebStorm, PyCharm, etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+.idea_modules/
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+.*.swp
+.*.swo
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# -----------------------------------------------------------------------------
+# Operating System Files
+# -----------------------------------------------------------------------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+.directory
+.Trash-*
+.nfs*
+
+# -----------------------------------------------------------------------------
+# Backup and Temporary Files
+# -----------------------------------------------------------------------------
+*.bak
+*.backup
+*.tmp
+*.temp
+*.old
+*.orig
+*.save
+
+# -----------------------------------------------------------------------------
+# SSL Certificates and Keys
+# -----------------------------------------------------------------------------
+# Never commit SSL certificates or private keys
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+ssl/
+certs/
+
+# -----------------------------------------------------------------------------
+# Logs and Databases
+# -----------------------------------------------------------------------------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# -----------------------------------------------------------------------------
+# Jitsi Specific
+# -----------------------------------------------------------------------------
+# Configuration directories (managed by Docker volumes)
+config/
+.jitsi-meet-cfg/
+transcripts/
+recordings/
+
+# -----------------------------------------------------------------------------
+# Miscellaneous
+# -----------------------------------------------------------------------------
+.cache/
+.npm/
+.yarn/
+node_modules/
+

@@ -1,0 +1,58 @@
+version: "3.8"
+
+services:
+  web:
+    image: jitsi/web:stable
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - web_config:/config
+    environment:
+      - PUBLIC_URL=${PUBLIC_URL}
+      - ENABLE_AUTH=${ENABLE_AUTH}
+      - ENABLE_GUESTS=${ENABLE_GUESTS}
+      - ENABLE_LETSENCRYPT=${ENABLE_LETSENCRYPT}
+      - ENABLE_HTTP_REDIRECT=${ENABLE_HTTP_REDIRECT}
+      - TZ=${TZ}
+
+  prosody:
+    image: jitsi/prosody:stable
+    restart: unless-stopped
+    volumes:
+      - prosody_config:/config
+    environment:
+      - ENABLE_AUTH=${ENABLE_AUTH}
+      - ENABLE_GUESTS=${ENABLE_GUESTS}
+      - XMPP_DOMAIN=localhost
+      - XMPP_AUTH_DOMAIN=auth.localhost
+      - XMPP_MUC_DOMAIN=muc.localhost
+      - XMPP_INTERNAL_MUC_DOMAIN=internal-muc.localhost
+      - JICOFO_AUTH_PASSWORD=${JICOFO_AUTH_PASSWORD}
+      - JVB_AUTH_PASSWORD=${JVB_AUTH_PASSWORD}
+      - JIGASI_XMPP_PASSWORD=${JIGASI_XMPP_PASSWORD}
+      - JIBRI_XMPP_PASSWORD=${JIBRI_XMPP_PASSWORD}
+      - TZ=${TZ}
+
+  jicofo:
+    image: jitsi/jicofo:stable
+    restart: unless-stopped
+    depends_on:
+      - prosody
+    environment:
+      - JICOFO_AUTH_PASSWORD=${JICOFO_AUTH_PASSWORD}
+      - TZ=${TZ}
+
+  jvb:
+    image: jitsi/jvb:stable
+    restart: unless-stopped
+    ports:
+      - "10000:10000/udp"
+    environment:
+      - JVB_AUTH_PASSWORD=${JVB_AUTH_PASSWORD}
+      - PUBLIC_URL=${PUBLIC_URL}
+      - TZ=${TZ}
+
+volumes:
+  web_config:
+  prosody_config:
